@@ -1,0 +1,102 @@
+{
+  "lessonNumber": 1,
+  "title": "第1課",
+  "titleEn": "Lesson 1: Introducing Yourself",
+  "words": [
+    { "japanese": "私", "reading": "わたし", "meaning": "I; me" },
+    { "japanese": "あなた", "reading": "あなた", "meaning": "you" },
+    { "japanese": "彼", "reading": "かれ", "meaning": "he; boyfriend" },
+    { "japanese": "彼女", "reading": "かのじょ", "meaning": "she; girlfriend" },
+    { "japanese": "先生", "reading": "せんせい", "meaning": "teacher; doctor" },
+    { "japanese": "学生", "reading": "がくせい", "meaning": "student" },
+    { "japanese": "会社員", "reading": "かいしゃいん", "meaning": "company employee" },
+    { "japanese": "社員", "reading": "しゃいん", "meaning": "employee (of a company)" },
+    { "japanese": "銀行員", "reading": "ぎんこういん", "meaning": "bank employee" },
+    { "japanese": "医者", "reading": "いしゃ", "meaning": "doctor" },
+    { "japanese": "研究者", "reading": "けんきゅうしゃ", "meaning": "researcher" },
+    { "japanese": "大学", "reading": "だいがく", "meaning": "university" },
+    { "japanese": "病院", "reading": "びょういん", "meaning": "hospital" },
+    { "japanese": "電話", "reading": "でんわ", "meaning": "telephone" },
+    { "japanese": "名前", "reading": "なまえ", "meaning": "name" },
+    { "japanese": "人", "reading": "ひと", "meaning": "person" },
+    { "japanese": "友達", "reading": "ともだち", "meaning": "friend" },
+    { "japanese": "はい", "reading": "はい", "meaning": "yes" },
+    { "japanese": "いいえ", "reading": "いいえ", "meaning": "no" },
+    { "japanese": "初めまして", "reading": "はじめまして", "meaning": "How do you do? / Nice to meet you" },
+    { "japanese": "どうぞよろしく", "reading": "どうぞよろしく", "meaning": "Nice to meet you" },
+    { "japanese": "こちらこそ", "reading": "こちらこそ", "meaning": "Likewise / Nice to meet you too" },
+    { "japanese": "～さん", "reading": "～さん", "meaning": "Mr. / Ms. (honorific suffix)" }
+  ],
+  "grammar": [
+    {
+      "pattern": "N1 は N2 です",
+      "explanation": "A is B. 「は」 is the topic particle, and 「です」 means 'is / are / am.'",
+      "examples": [
+        { "japanese": "わたしは学生です。", "meaning": "I am a student." },
+        { "japanese": "田中さんは先生です。", "meaning": "Mr. Tanaka is a teacher." }
+      ]
+    },
+    {
+      "pattern": "N1 は N2 ではありません",
+      "explanation": "A is not B. Negative form of 「です」.",
+      "examples": [
+        { "japanese": "わたしは学生ではありません。", "meaning": "I am not a student." },
+        { "japanese": "山田さんは医者ではありません。", "meaning": "Mr. Yamada is not a doctor." }
+      ]
+    },
+    {
+      "pattern": "N1 は N2 ですか",
+      "explanation": "Is A B? Question form: add 「か」 at the end.",
+      "examples": [
+        { "japanese": "あなたは学生ですか。", "meaning": "Are you a student?" },
+        { "japanese": "はい、学生です。", "meaning": "Yes, I am a student." },
+        { "japanese": "いいえ、学生ではありません。", "meaning": "No, I am not a student." }
+      ]
+    },
+    {
+      "pattern": "N1 の N2",
+      "explanation": "The particle 「の」 connects two nouns. N1 modifies N2.",
+      "examples": [
+        { "japanese": "わたしの名前は田中です。", "meaning": "My name is Tanaka." },
+        { "japanese": "大学の先生", "meaning": "A university teacher" }
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "「わたしは学生です。」means:",
+      "options": ["I am a student.", "You are a student.", "He is a student.", "She is a student."],
+      "correctAnswer": 0
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "How do you say 'Are you a doctor?' in Japanese?",
+      "options": ["あなたは医者です。", "あなたは医者ですか。", "あなたは医者ではありません。", "あなたは医者でした。"],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "question": "What does 「せんせい」 mean?",
+      "options": ["Student", "Company employee", "Teacher / Doctor", "Friend"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "Which is the correct negative form? 'I am not a student.'",
+      "options": ["わたしは学生です。", "わたしは学生ですか。", "わたしは学生ではありません。", "わたしは学生でした。"],
+      "correctAnswer": 2
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "What does 「の」 do when placed between two nouns?",
+      "options": ["Marks the topic", "Connects two nouns (N2 of N1)", "Makes it a question", "Makes it negative"],
+      "correctAnswer": 1
+    }
+  ]
+}

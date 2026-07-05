@@ -1,0 +1,8 @@
+# Environment variables (contains real Firebase credentials)
+.env
+
+# Firebase Admin SDK service account key (contains sensitive credentials)
+learn-japanese-e60e8-firebase-adminsdk-fbsvc-eef3889a6b.json
+CLAUDE.md
+.claude
+/server/node_modules
