@@ -12,5 +12,8 @@ Set-Location ..
 Write-Host "All dependencies installed!" -ForegroundColor Green
 Write-Host ""
 Write-Host "To start the app:"
-Write-Host "  Terminal 1: cd server && npm run dev"
-Write-Host "  Terminal 2: cd client && npm run dev"
+Write-Host "  npm run dev      (root — starts Vite dev server on :5173)"
+Write-Host ""
+Write-Host "For Render:"
+Write-Host "  Build command: npm install && npm run build"
+Write-Host "  Start command: npm start"
