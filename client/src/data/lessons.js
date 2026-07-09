@@ -1,6 +1,7 @@
 // Minna no Nihongo N5 — Lessons 1-25
 // Real content based on the Minna no Nihongo textbook series
 import vocabulary from './vocabulary';
+import { getQuizByLesson } from './quiz';
 
 const LESSON_META = [
   { id: 1, title: '第1課', titleEn: 'Lesson 1: Introducing Yourself', titleNp: 'पाठ १: आफ्नो परिचय दिने' },
@@ -30,13 +31,13 @@ const LESSON_META = [
   { id: 25, title: '第25課', titleEn: 'Lesson 25: Conditionals (たら・ば)', titleNp: 'पाठ २५: सर्त वाक्य' },
 ];
 
-// Build lesson objects — words come from vocabulary.js
+// Build lesson objects — words from vocabulary.js, quiz from quiz.js
 const lessons = LESSON_META.map((meta) => ({
   ...meta,
   lessonNumber: meta.id,
   words: vocabulary[meta.id] || [],
   grammar: [],
-  quiz: [],
+  quiz: getQuizByLesson(meta.id),
 }));
 
 // ——— Lesson 1: Full grammar & quiz ———
@@ -152,70 +153,7 @@ lessons[0].grammar.push(
   }
 );
 
-lessons[0].quiz.push(
-  {
-    id: 'q1',
-    type: 'multiple-choice',
-    question: '「わたしは学生です。」means:',
-    questionNp: '「わたしは学生です。」को अर्थ:',
-    options: [
-      'I am a student.',
-      'You are a student.',
-      'He is a student.',
-      'She is a student.',
-    ],
-    correctAnswer: 0,
-  },
-  {
-    id: 'q2',
-    type: 'multiple-choice',
-    question: 'How do you say "Are you a doctor?" in Japanese?',
-    questionNp:
-      'तपाईं "के तपाईं डाक्टर हुनुहुन्छ?" जापानीमा कसरी भन्नुहुन्छ?',
-    options: [
-      'あなたは医者です。',
-      'あなたは医者ですか。',
-      'あなたは医者ではありません。',
-      'あなたは医者でした。',
-    ],
-    correctAnswer: 1,
-  },
-  {
-    id: 'q3',
-    type: 'multiple-choice',
-    question: 'What does 「せんせい」 mean?',
-    questionNp: '「せんせい」को अर्थ के हो?',
-    options: ['Student', 'Company employee', 'Teacher / Doctor', 'Friend'],
-    correctAnswer: 2,
-  },
-  {
-    id: 'q4',
-    type: 'multiple-choice',
-    question: 'Which is the correct negative form? "I am not a student."',
-    questionNp:
-      'सही नकारात्मक रूप कुन हो? "I am not a student."',
-    options: [
-      'わたしは学生です。',
-      'わたしは学生ですか。',
-      'わたしは学生ではありません。',
-      'わたしは学生でした。',
-    ],
-    correctAnswer: 2,
-  },
-  {
-    id: 'q5',
-    type: 'multiple-choice',
-    question: '「N1 の N2」— What does の do in a sentence?',
-    questionNp: '「N1 の N2」— वाक्यमा の ले के गर्छ?',
-    options: [
-      'Marks the topic',
-      'Connects two nouns (N2 of N1)',
-      'Makes it a question',
-      'Makes it negative',
-    ],
-    correctAnswer: 1,
-  }
-);
+// Quiz questions for all lessons are loaded from quiz.js via getQuizByLesson() above
 
 export function getLessonById(id) {
   return lessons.find((l) => l.id === Number(id));

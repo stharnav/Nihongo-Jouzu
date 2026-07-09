@@ -8,6 +8,7 @@ import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import LessonDetail from './pages/LessonDetail';
 import QuizPage from './pages/QuizPage';
+import WordQuizPage from './pages/WordQuizPage';
 import Settings from './pages/Settings';
 import SeedFirestore from './pages/SeedFirestore';
 import Admin from './pages/Admin';
@@ -25,6 +26,7 @@ export default function App() {
                 <Route element={<AppShell />}>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/lesson/:lessonId" element={<LessonDetail />} />
+                  <Route path="/word-quiz/:lessonId" element={<WordQuizPage />} />
                   <Route path="/quiz/:lessonId" element={<QuizPage />} />
                   <Route path="/admin" element={<Admin />} />
                 </Route>

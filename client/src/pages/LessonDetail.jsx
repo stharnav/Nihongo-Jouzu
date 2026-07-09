@@ -181,18 +181,28 @@ export default function LessonDetail() {
             <h2 className="text-xl font-bold mb-2">Ready to test yourself?</h2>
             <p className="text-duolingo-text-secondary mb-6 text-sm">
               {hasStaticQuiz
-                ? `${lesson.quiz.length} questions based on this lesson.`
+                ? `${lesson.quiz.length} hand-crafted + dynamic questions.`
                 : effectiveWords.length >= 4
                 ? `${dynamicQuizCount} questions generated from ${effectiveWords.length} vocabulary words.`
                 : 'Add more vocabulary words to enable the quiz.'}
             </p>
             {(hasStaticQuiz || effectiveWords.length >= 4) ? (
-              <button
-                onClick={() => navigate(`/quiz/${lessonId}`)}
-                className="btn-primary inline-flex items-center gap-2"
-              >
-                Start Quiz →
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                {effectiveWords.length >= 4 && (
+                  <button
+                    onClick={() => navigate(`/word-quiz/${lessonId}`)}
+                    className="btn-secondary inline-flex items-center gap-2 justify-center"
+                  >
+                    📝 Vocabulary Practice →
+                  </button>
+                )}
+                <button
+                  onClick={() => navigate(`/quiz/${lessonId}`)}
+                  className="btn-primary inline-flex items-center gap-2 justify-center"
+                >
+                  ✍️ Full Quiz →
+                </button>
+              </div>
             ) : (
               <div className="text-duolingo-text-muted text-sm italic">
                 Not enough vocabulary to generate a quiz.

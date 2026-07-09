@@ -230,6 +230,94 @@ export function generateQuizFromGrammar(grammar, lessonId, maxQuestions = 4, scr
 }
 
 /**
+ * Generate word-only quiz questions with bilingual (English/Nepali) support.
+ * Tests Japanese → meaning and meaning → Japanese.
+ *
+ * Each question includes both `question`/`questionNp` and `options`/`optionsNp`
+ * so QuestionCard renders the correct language based on the user's setting.
+ *
+ * @param {Array} words - Array of word objects { japanese, reading, meaning, meaningNp }
+ * @param {number|string} lessonId - Lesson identifier for question IDs
+ * @param {number} maxQuestions - Maximum number of questions to generate (default: 10)
+ * @param {string} scriptMode - 'kanji' | 'hiragana' | 'furigana' (default: 'kanji')
+ * @returns {Array} Array of question objects with bilingual fields
+ */
+export function generateWordQuiz(words, lessonId, maxQuestions = 10, scriptMode = 'kanji') {
+  if (!words || words.length < 4) return [];
+
+  const questions = [];
+  const shuffled = shuffle(words);
+  const count = Math.min(shuffled.length, maxQuestions);
+  let id = 0;
+
+  const TYPES = ['jp-to-meaning', 'meaning-to-jp'];
+
+  for (let i = 0; i < count; i++) {
+    const word = shuffled[i];
+    const type = TYPES[i % TYPES.length];
+    const displayJp = formatJapanese(word, scriptMode);
+
+    if (type === 'jp-to-meaning') {
+      // Japanese → meaning (English / Nepali)
+      const correctEn = word.meaning;
+      const distractorsEn = pickDistractors(words, correctEn, 3, (w) => w.meaning);
+      if (distractorsEn.length < 3) continue;
+
+      const optionsEn = shuffle([correctEn, ...distractorsEn]);
+
+      // Build matching Nepali options array (preserving index order)
+      const optionsNp = optionsEn.map((opt) => {
+        const match = words.find((w) => w.meaning === opt);
+        return match ? match.meaningNp || match.meaning : opt;
+      });
+
+      questions.push({
+        id: `wq-${lessonId}-${id++}`,
+        type: 'multiple-choice',
+        question: `What is the meaning of 「${displayJp}」?`,
+        questionNp: `「${displayJp}」 को अर्थ के हो?`,
+        options: optionsEn,
+        optionsNp,
+        correctAnswer: optionsEn.indexOf(correctEn),
+      });
+    } else if (type === 'meaning-to-jp') {
+      // Meaning → Japanese
+      const correct = formatJapanese(word, scriptMode);
+      const distractors = shuffle(
+        words
+          .filter((w) => w.japanese !== word.japanese)
+          .map((w) => formatJapanese(w, scriptMode))
+      ).slice(0, 3);
+
+      const uniqueDistractors = [];
+      const seen = new Set([correct]);
+      for (const d of distractors) {
+        if (!seen.has(d)) {
+          seen.add(d);
+          uniqueDistractors.push(d);
+        }
+      }
+      if (uniqueDistractors.length < 3) continue;
+
+      const options = shuffle([correct, ...uniqueDistractors]);
+      const meaningNp = word.meaningNp || word.meaning;
+
+      questions.push({
+        id: `wq-${lessonId}-${id++}`,
+        type: 'multiple-choice',
+        question: `How do you say "${word.meaning}" in Japanese?`,
+        questionNp: `"${meaningNp}" जापानीमा कसरी भनिन्छ?`,
+        options,
+        optionsNp: options,
+        correctAnswer: options.indexOf(correct),
+      });
+    }
+  }
+
+  return questions;
+}
+
+/**
  * Generate a full quiz for a lesson from both vocabulary and grammar data.
  * Combines word-based and grammar-based questions, then shuffles them together.
  *

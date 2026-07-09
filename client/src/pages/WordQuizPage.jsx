@@ -2,29 +2,21 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getLessonById } from '../data/lessons';
 import { getLessonWordsFromFirestore } from '../services/wordService';
-import { getLessonGrammarFromFirestore } from '../services/grammarService';
-import { getGrammarByLesson } from '../data/grammar';
-import { generateQuizFromLesson } from '../utils/generateQuiz';
-import { useProgress } from '../contexts/ProgressContext';
-import { useAuth } from '../contexts/AuthContext';
+import { generateWordQuiz } from '../utils/generateQuiz';
 import { useSettings } from '../contexts/SettingsContext';
 import QuestionCard from '../components/quiz/QuestionCard';
 import ResultsScreen from '../components/quiz/ResultsScreen';
 
-export default function QuizPage() {
+export default function WordQuizPage() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
-  const { updateLessonProgress, isLessonUnlocked } = useProgress();
-  const { user } = useAuth();
   const { settings } = useSettings();
-  const { language } = settings;
+  const { language, scriptMode } = settings;
 
   const lesson = getLessonById(lessonId);
-  const localGrammar = getGrammarByLesson(lessonId);
 
-  // Firestore data state
+  // Firestore words state
   const [firestoreWords, setFirestoreWords] = useState(null);
-  const [firestoreGrammar, setFirestoreGrammar] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Quiz state
@@ -35,72 +27,53 @@ export default function QuizPage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [quizComplete, setQuizComplete] = useState(false);
 
-  // Fetch words and grammar from Firestore, fall back to local data
+  // Fetch words from Firestore, fall back to local data
   useEffect(() => {
     if (!lesson) return;
     setLoading(true);
 
-    Promise.all([
-      getLessonWordsFromFirestore(lessonId),
-      getLessonGrammarFromFirestore(lessonId),
-    ])
-      .then(([words, grammar]) => {
+    getLessonWordsFromFirestore(lessonId)
+      .then((words) => {
         if (words && words.length > 0) {
           setFirestoreWords(words);
         }
-        if (grammar && grammar.length > 0) {
-          setFirestoreGrammar(grammar);
-        }
       })
       .catch(() => {
-        // fallback to local data
+        // fall back to local data
       })
       .finally(() => setLoading(false));
   }, [lessonId, lesson]);
 
-  // Determine effective data sets
-  const effectiveWords = firestoreWords || lesson?.words || [];
-  const effectiveGrammar =
-    firestoreGrammar ||
-    (lesson?.grammar?.length > 0 ? lesson.grammar : localGrammar);
+  // Effective word set
+  const effectiveWords = useMemo(
+    () => firestoreWords || lesson?.words || [],
+    [firestoreWords, lesson],
+  );
 
-  // Generate quiz — mix static questions with dynamically generated ones
+  // Generate word-only quiz questions
   const questions = useMemo(() => {
-    const combined = [];
+    const generated = generateWordQuiz(effectiveWords, lessonId, 10, scriptMode);
 
-    // 1. Add static hand-written quiz questions
-    if (lesson?.quiz?.length > 0) {
-      combined.push(...lesson.quiz);
-    }
-
-    // 2. Also generate dynamic questions from vocabulary + grammar
-    if (effectiveWords.length >= 4 || effectiveGrammar.length >= 2) {
-      const dynamic = generateQuizFromLesson(effectiveWords, effectiveGrammar, lessonId, {
-        scriptMode: settings.scriptMode,
-      });
-      combined.push(...dynamic);
-    }
-
-    // Shuffle so static and dynamic questions are interleaved
-    if (combined.length > 1) {
-      for (let i = combined.length - 1; i > 0; i--) {
+    // Shuffle
+    if (generated.length > 1) {
+      for (let i = generated.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [combined[i], combined[j]] = [combined[j], combined[i]];
+        [generated[i], generated[j]] = [generated[j], generated[i]];
       }
     }
 
-    return combined;
-  }, [lesson, effectiveWords, effectiveGrammar, lessonId, settings.scriptMode]);
+    return generated;
+  }, [effectiveWords, lessonId, scriptMode]);
 
   const totalQuestions = questions.length;
 
-  // Guard: loading, locked, or no questions
+  // Guard: loading or not enough words
   useEffect(() => {
     if (loading) return;
-    if (!lesson || !isLessonUnlocked(lessonId) || totalQuestions === 0) {
+    if (!lesson || totalQuestions === 0) {
       navigate(`/lesson/${lessonId}`, { replace: true });
     }
-  }, [lesson, lessonId, isLessonUnlocked, navigate, totalQuestions, loading]);
+  }, [lesson, lessonId, navigate, totalQuestions, loading]);
 
   const handleAnswer = useCallback((isCorrect, selectedIndex) => {
     setSelectedAnswer(selectedIndex);
@@ -130,18 +103,6 @@ export default function QuizPage() {
     setQuizComplete(false);
   }, []);
 
-  // Save progress when quiz completes
-  useEffect(() => {
-    if (!quizComplete || totalQuestions === 0) return;
-
-    const percentage = Math.round((score / totalQuestions) * 100);
-    updateLessonProgress(lessonId, {
-      quizCompleted: true,
-      quizScore: percentage,
-      quizAttempts: 1,
-    });
-  }, [quizComplete, score, totalQuestions, lessonId, updateLessonProgress]);
-
   if (!lesson) return null;
 
   // Loading state
@@ -150,7 +111,9 @@ export default function QuizPage() {
       <div className="flex items-center justify-center py-20">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-duolingo-green border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-sm text-duolingo-text-muted">Loading quiz data...</p>
+          <p className="text-sm text-duolingo-text-muted">
+            {language === 'en' ? 'Loading vocabulary quiz...' : 'शब्दावली प्रश्नोत्तरी लोड हुँदै...'}
+          </p>
         </div>
       </div>
     );
