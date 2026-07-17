@@ -272,7 +272,9 @@ export default function Settings() {
       <div className="animate-fade-in text-center" style={{ animationDelay: '0.5s' }}>
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-100">
           <span className="w-2 h-2 rounded-full bg-duolingo-green animate-pulse" />
-          <span className="text-xs text-duolingo-green-dark font-medium">Auto-saved to browser</span>
+          <span className="text-xs text-duolingo-green-dark font-medium">
+            {user ? 'Saved to your account' : 'Saved to browser'}
+          </span>
         </div>
       </div>
     </div>

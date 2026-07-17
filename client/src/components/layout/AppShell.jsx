@@ -2,8 +2,8 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 const NAV_ITEMS = [
-  { path: '/dashboard', label: 'Home', icon: '🏠' },
   { path: '/lesson/1', label: 'Learn', icon: '📚' },
+  { path: '/quiz', label: 'Quiz', icon: '✍️' },
 ];
 const ADMIN_EMAILS = ['arnav@example.com', 'admin@nihongo-jouzu.com'];
 
