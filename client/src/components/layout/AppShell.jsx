@@ -21,7 +21,7 @@ export default function AppShell() {
             onClick={() => navigate('/dashboard')}
             className="flex items-center gap-2 font-bold text-lg text-duolingo-green"
           >
-            <span className="text-2xl">🦉</span>
+            <img src="/logo.png" alt="Nihongo Jouzu" className="w-8 h-8" />
             <span className="hidden sm:inline">Nihongo Jouzu</span>
           </button>
 

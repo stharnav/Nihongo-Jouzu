@@ -210,7 +210,7 @@ export default function Settings() {
               <p className="text-xs text-duolingo-text-secondary">プレビュー</p>
             </div>
           </div>
-          <span className="text-2xl">🦉</span>
+          <img src="/logo.png" alt="" className="w-8 h-8" />
         </div>
         <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-white/50 overflow-hidden">
           <div className="divide-y divide-gray-100">

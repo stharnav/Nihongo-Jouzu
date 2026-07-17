@@ -40,7 +40,7 @@ export default function Landing() {
     <div className="min-h-screen bg-gradient-to-b from-white to-duolingo-background flex flex-col items-center justify-center px-6 py-12">
       {/* Logo / Mascot */}
       <div className="text-center mb-10 animate-fade-in">
-        <div className="text-7xl mb-4">🦉</div>
+        <img src="/background.png" alt="Nihongo Jouzu" className="w-[400px] max-w-full h-auto mx-auto mb-4" />
         <h1 className="text-4xl sm:text-5xl font-bold text-duolingo-text-primary mb-2">
           Nihongo Jouzu
         </h1>
