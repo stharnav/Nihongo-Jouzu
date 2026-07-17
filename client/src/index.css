@@ -37,7 +37,7 @@
   }
 
   .btn-option-correct {
-    @apply border-duolingo-green bg-green-50 text-duolingo-green-dark;
+    @apply border-duolingo-green bg-duolingo-green/10 text-duolingo-green-dark;
   }
 
   .btn-option-wrong {

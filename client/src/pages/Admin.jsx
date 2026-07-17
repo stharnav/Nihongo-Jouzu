@@ -497,7 +497,7 @@ export default function Admin() {
 
       {/* Feedback Messages */}
       {saveMessage && (
-        <div className="animate-slide-up bg-green-50 border border-green-100 rounded-2xl px-4 py-3 text-sm text-duolingo-green-dark font-medium flex items-center gap-2">
+        <div className="animate-slide-up bg-duolingo-green/10 border border-duolingo-green/20 rounded-2xl px-4 py-3 text-sm text-duolingo-green-dark font-medium flex items-center gap-2">
           <span>✅</span> {saveMessage}
         </div>
       )}
@@ -664,7 +664,7 @@ function GrammarPointCard({
               </h4>
               <button
                 onClick={onAddExample}
-                className="text-xs font-semibold text-duolingo-green hover:bg-green-50 px-2.5 py-1 rounded-lg transition-colors"
+                className="text-xs font-semibold text-duolingo-green hover:bg-duolingo-green/10 px-2.5 py-1 rounded-lg transition-colors"
               >
                 ＋ Add Example
               </button>

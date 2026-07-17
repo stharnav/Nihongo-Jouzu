@@ -62,7 +62,7 @@ export default function Settings() {
       {/* Japanese Script Section */}
       <div className="animate-slide-up card">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-duolingo-green/30 to-duolingo-green/10 flex items-center justify-center">
             <span className="text-lg">🔤</span>
           </div>
           <div>
@@ -81,7 +81,7 @@ export default function Settings() {
               onClick={() => updateSettings({ scriptMode: mode.value })}
               className={`w-full text-left p-4 rounded-2xl border-2 transition-all duration-200 ${
                 settings.scriptMode === mode.value
-                  ? 'border-duolingo-green bg-green-50 shadow-sm scale-[1.01]'
+                  ? 'border-duolingo-green bg-duolingo-green/10 shadow-sm scale-[1.01]'
                   : 'border-duolingo-card-border hover:border-duolingo-green/30 hover:bg-gray-50'
               }`}
             >
@@ -128,7 +128,7 @@ export default function Settings() {
               onClick={() => updateSettings({ language: lang.value })}
               className={`relative p-5 rounded-2xl border-2 text-center transition-all duration-200 ${
                 settings.language === lang.value
-                  ? 'border-duolingo-green bg-green-50 ring-2 ring-green-100 scale-[1.02]'
+                  ? 'border-duolingo-green bg-duolingo-green/10 ring-2 ring-duolingo-green/20 scale-[1.02]'
                   : 'border-duolingo-card-border hover:border-duolingo-green/30 hover:scale-[1.02] hover:bg-gray-50'
               }`}
             >
@@ -270,7 +270,7 @@ export default function Settings() {
 
       {/* Save indicator */}
       <div className="animate-fade-in text-center" style={{ animationDelay: '0.5s' }}>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-100">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-duolingo-green/10 border border-duolingo-green/20">
           <span className="w-2 h-2 rounded-full bg-duolingo-green animate-pulse" />
           <span className="text-xs text-duolingo-green-dark font-medium">
             {user ? 'Saved to your account' : 'Saved to browser'}

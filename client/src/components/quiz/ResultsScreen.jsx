@@ -46,7 +46,7 @@ export default function ResultsScreen({ score, total, lessonId, onRetry }) {
             <circle
               cx="50" cy="50" r="45"
               fill="none"
-              stroke={passed ? '#58CC02' : '#FF4B4B'}
+              stroke={passed ? '#FF4081' : '#FF4B4B'}
               strokeWidth="8"
               strokeLinecap="round"
               strokeDasharray={`${(percentage / 100) * 283} 283`}
@@ -61,7 +61,7 @@ export default function ResultsScreen({ score, total, lessonId, onRetry }) {
 
         {/* Details */}
         <div className="grid grid-cols-2 gap-3 mb-6 text-sm">
-          <div className="bg-green-50 rounded-xl p-3">
+          <div className="bg-duolingo-green/10 rounded-xl p-3">
             <div className="font-bold text-duolingo-green-dark">
               {language === 'en' ? `${score} correct` : `${score} सही`}
             </div>

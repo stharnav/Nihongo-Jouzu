@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         duolingo: {
-          green: '#58CC02',
-          'green-hover': '#46A302',
-          'green-dark': '#3B8200',
+          green: '#FF4081',
+          'green-hover': '#D81B60',
+          'green-dark': '#AD1457',
           blue: '#1CB0F6',
           'blue-hover': '#1899D6',
           red: '#FF4B4B',

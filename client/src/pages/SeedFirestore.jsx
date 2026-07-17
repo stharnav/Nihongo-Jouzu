@@ -98,7 +98,7 @@ export default function SeedFirestore() {
             <div className="text-lg font-bold text-duolingo-blue mt-1">{wordCount}</div>
             <div className="text-xs text-duolingo-text-secondary">Total Words</div>
           </div>
-          <div className="bg-green-50 rounded-2xl p-4 text-center">
+          <div className="bg-duolingo-green/10 rounded-2xl p-4 text-center">
             <div className="text-3xl font-bold text-duolingo-green">{grammarLessonCount}</div>
             <div className="text-xs text-duolingo-text-secondary mt-1">Grammar Lessons</div>
             <div className="text-lg font-bold text-duolingo-green mt-1">{grammarPointCount}</div>
@@ -128,7 +128,7 @@ export default function SeedFirestore() {
           </div>
 
           {vocabStatus === 'done' && vocabResult && (
-            <div className="bg-green-50 rounded-xl p-3 text-sm text-green-700">
+            <div className="bg-duolingo-green/10 rounded-xl p-3 text-sm text-duolingo-green-dark">
               ✅ {vocabResult.success}/{vocabResult.lessons} lessons uploaded
               ({vocabResult.totalWords} words)
             </div>
@@ -148,7 +148,7 @@ export default function SeedFirestore() {
         {/* Grammar Seed Section */}
         <div className="bg-gray-50 rounded-2xl p-5 space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-duolingo-green/30 to-duolingo-green/10 flex items-center justify-center">
               <span className="text-lg">📝</span>
             </div>
             <div>
@@ -160,7 +160,7 @@ export default function SeedFirestore() {
           </div>
 
           {grammarStatus === 'done' && grammarResult && (
-            <div className="bg-green-50 rounded-xl p-3 text-sm text-green-700">
+            <div className="bg-duolingo-green/10 rounded-xl p-3 text-sm text-duolingo-green-dark">
               ✅ {grammarResult.success}/{grammarResult.lessons} lessons uploaded
               ({grammarResult.totalPoints} grammar points)
             </div>

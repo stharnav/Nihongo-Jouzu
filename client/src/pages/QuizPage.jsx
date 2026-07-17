@@ -88,7 +88,7 @@ function QuizConfigForm({ onStart, initialFrom, initialTo }) {
             onClick={() => setQuizType('vocab')}
             className={`p-4 rounded-2xl border-2 text-center transition-all duration-200 ${
               quizType === 'vocab'
-                ? 'border-duolingo-green bg-green-50 ring-2 ring-green-100'
+                ? 'border-duolingo-green bg-duolingo-green/10 ring-2 ring-duolingo-green/20'
                 : 'border-duolingo-card-border hover:border-duolingo-green/30 hover:bg-gray-50'
             }`}
           >
@@ -106,7 +106,7 @@ function QuizConfigForm({ onStart, initialFrom, initialTo }) {
             onClick={() => setQuizType('full')}
             className={`p-4 rounded-2xl border-2 text-center transition-all duration-200 ${
               quizType === 'full'
-                ? 'border-duolingo-green bg-green-50 ring-2 ring-green-100'
+                ? 'border-duolingo-green bg-duolingo-green/10 ring-2 ring-duolingo-green/20'
                 : 'border-duolingo-card-border hover:border-duolingo-green/30 hover:bg-gray-50'
             }`}
           >

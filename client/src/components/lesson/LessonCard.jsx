@@ -23,7 +23,7 @@ export default function LessonCard({ lesson, progress, isUnlocked, onClick }) {
       <div className="flex items-center gap-4">
         {/* Status Icon */}
         <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center
-          ${quizDone && quizScore >= 60 ? 'bg-green-100' : isUnlocked ? 'bg-blue-50' : 'bg-gray-100'}">
+          ${quizDone && quizScore >= 60 ? 'bg-duolingo-green/20' : isUnlocked ? 'bg-blue-50' : 'bg-gray-100'}">
           {quizDone && quizScore >= 60 ? (
             <span className="text-xl">✅</span>
           ) : isUnlocked ? (
@@ -77,7 +77,7 @@ function ProgressDot({ label, done, enabled, score }) {
   return (
     <div className={`text-xs px-2 py-0.5 rounded-full font-medium ${
       done && score !== undefined && score >= 60
-        ? 'bg-green-100 text-duolingo-green-dark'
+        ? 'bg-duolingo-green/20 text-duolingo-green-dark'
         : done
         ? 'bg-blue-50 text-duolingo-blue'
         : 'bg-gray-100 text-duolingo-text-muted'

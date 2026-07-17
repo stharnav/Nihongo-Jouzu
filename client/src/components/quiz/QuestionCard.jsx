@@ -61,7 +61,7 @@ export default function QuestionCard({ question, onAnswer, showResult, selectedA
       {showResult && (
         <div className={`mt-6 p-4 rounded-2xl text-center font-bold animate-slide-up ${
           selectedAnswer === question.correctAnswer
-            ? 'bg-green-50 text-duolingo-green-dark'
+            ? 'bg-duolingo-green/10 text-duolingo-green-dark'
             : 'bg-red-50 text-duolingo-red'
         }`}>
           {selectedAnswer === question.correctAnswer ? (
